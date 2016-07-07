@@ -38,7 +38,7 @@ config.after_initialize do
 end
 ```
 
-Run your test code and bullet notifications will save to the MySQL `bullet_notifications` table.
+Run your test code and bullet notifications will be saved to the MySQL `bullet_notifications` table.
 
 ## Development
 
@@ -48,5 +48,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/bullet_uniform_notifier_mysql.
+Bug reports and pull requests are welcome on GitHub at https://github.com/takatoshiono/bullet_uniform_notifier_mysql.
 
