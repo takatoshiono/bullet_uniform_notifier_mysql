@@ -1,8 +1,8 @@
 # BulletUniformNotifierMysql
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/bullet_uniform_notifier_mysql`. To experiment with that code, run `bin/console` for an interactive prompt.
+The [Bullet](https://github.com/flyerhzm/bullet) gem is great to help you detect N+1 queries. The notifier of Bullet use [uniform_notifier](https://github.com/flyerhzm/uniform_notifier) gem.
 
-TODO: Delete this and the text above, and describe your gem
+BulletUniformNotifierMysql save notifications to MySQL.
 
 ## Installation
 
@@ -22,7 +22,23 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Gemfile:
+
+```
+gem 'bullet'
+gem 'bullet_uniform_notifier_mysql', github: 'takatoshiono/bullet_uniform_notifier_mysql'
+```
+
+config/environments/test.rb:
+
+```ruby
+config.after_initialize do
+  Bullet.enable = true
+  Bullet.mysql = { host: 'localhost', username: 'root', database: 'test' }
+end
+```
+
+Run your test code and bullet notifications will save to the MySQL `bullet_notifications` table.
 
 ## Development
 
