@@ -36,11 +36,11 @@ class UniformNotifier
         @mysql2.query(<<-"SQL")
           CREATE TABLE bullet_notifications (
             id      int not null auto_increment,
-            url     varchar(255) not null default '',
-            title   varchar(255) not null default '',
-            body    text not null,
-            created_at datetime not null,
-            updated_at timestamp not null,
+            url     varchar(255),
+            title   varchar(255),
+            body    text,
+            created_at datetime,
+            updated_at timestamp,
             primary key (id)
           )
         SQL
