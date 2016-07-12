@@ -26,7 +26,7 @@ Gemfile:
 
 ```
 gem 'bullet'
-gem 'bullet_uniform_notifier_mysql', github: 'takatoshiono/bullet_uniform_notifier_mysql'
+gem 'bullet_uniform_notifier_mysql'
 ```
 
 config/environments/test.rb:
