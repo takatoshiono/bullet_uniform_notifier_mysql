@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
 
-  spec.add_dependency "bullet"
-  spec.add_dependency "uniform_notifier"
-  spec.add_dependency "mysql2"
+  spec.add_development_dependency "bullet"
+  spec.add_development_dependency "uniform_notifier"
+  spec.add_development_dependency "mysql2"
 end
