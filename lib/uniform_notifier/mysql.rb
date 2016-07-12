@@ -3,15 +3,15 @@ require 'mysql2'
 
 class UniformNotifier
   class Mysql < Base
-    @mysql2 = nil
+    @config = nil
 
     class << self
       def active?
-        @mysql2
+        @config && mysql_client
       end
 
       def setup_connection(config = {})
-        @mysql2 = Mysql2::Client.new(config)
+        @config = config
         create_table
       end
 
@@ -25,15 +25,19 @@ class UniformNotifier
       #   :body => body_with_caller,
       # }
       def _out_of_channel_notify(data)
-        statement = @mysql2.prepare('INSERT INTO bullet_notifications(url, title, body, created_at) VALUES(?, ?, ?, ?)')
+        statement = mysql_client.prepare('INSERT INTO bullet_notifications(url, title, body, created_at) VALUES(?, ?, ?, ?)')
         statement.execute(data[:url], data[:title], data[:body], Time.now)
       end
 
       private
 
+      def mysql_client
+        @mysql2 ||= Mysql2::Client.new(@config)
+      end
+
       def create_table
-        @mysql2.query('DROP TABLE IF EXISTS bullet_notifications')
-        @mysql2.query(<<-"SQL")
+        mysql_client.query('DROP TABLE IF EXISTS bullet_notifications')
+        mysql_client.query(<<-"SQL")
           CREATE TABLE bullet_notifications (
             id      int not null auto_increment,
             url     varchar(255),
